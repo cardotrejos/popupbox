@@ -12,13 +12,13 @@ WORKDIR /app
 COPY mix.exs mix.lock ./
 
 # Install dependencies
-RUN mix deps.get
+RUN mix deps.get --only prod
 
 # Copy the rest of the application code
 COPY . .
 
 # Compile the application
-RUN mix compile
+RUN MIX_ENV=prod mix compile
 
 # Expose the port the app runs on
 EXPOSE 4000
